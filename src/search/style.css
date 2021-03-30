@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.book-info {
+    display: flex;
+    width: 400px;
+}   
+
+.book-name {
+    color: #141414;
+}
+
+.book-author {
+    color: #d4d1d1;
+}
