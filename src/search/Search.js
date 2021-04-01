@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import Data from './Data';
+import { FiMoreVertical } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import './style.css';
 
 
@@ -28,22 +29,26 @@ export default class Search extends Component {
     handleChange(event) {
         this.setState({ value: event.target.value });
     }
-
+    showId(info) {
+        console.log(info);
+    }
     render() {
         console.log(this.state.data)
         let book = this.state.data.map((item) => {
             return (
-                <div className='book-info'>
+                <div className='book-info' key={item.id}>
                     <div>
                         <img src={item.volumeInfo.imageLinks.smallThumbnail} />
                     </div>
-                    <div>
+                    <div >
                         <h1 className='book-name'>{item.volumeInfo.title}</h1>
                         <p className='book-author'>by {item.volumeInfo.authors}</p>
                         <p>{item.volumeInfo.categories}</p>
-                        <p>{item.volumeInfo.description}</p>
+                        <Link to={`books/${item.id}`}>
+                            <button onClick={() => { this.showId(item.id) }}>Show Info</button>
+                        </Link>
+                        {/* <FiMoreVertical key={item.id}/> */}
                     </div>
-
                 </div>
             )
         })
@@ -57,15 +62,6 @@ export default class Search extends Component {
                 </div>
                 <div>
                     {book.length ? book : <p>empty</p>}
-
-                    {/* {this.state.data ? (
-                        <p>{this.state.data.length}</p>
-                    ): (
-                        <p>Empty</p>
-                    )}
-                    { {this.state.data((book) => (
-                        console.log(book)
-                    ))} } */}
                 </div>
             </div>
         )
