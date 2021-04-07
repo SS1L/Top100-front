@@ -6,7 +6,7 @@ import Signup from './registration/Signup';
 import Search from './search/Search';
 import Menu from './menu/Menu';
 import BookInfo from './search/BookInfo';
-import {BrowserRouter as  Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
 function App() {
@@ -18,9 +18,11 @@ function App() {
             <Menu />
           </Route>
           <Route exact path="/books">
+            <Menu />
             <Search />
           </Route>
           <Route exact path="/books/:id">
+            <Menu />
             <BookInfo />
           </Route>
         </Switch>
