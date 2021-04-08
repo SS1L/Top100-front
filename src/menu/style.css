@@ -1,0 +1,10 @@
+.menu {
+    width: 20%;
+    height: 100vh;
+    background-color: #0892ee; 
+}
+
+.list-item {
+    cursor: pointer;
+    text-decoration: none;
+}

@@ -11,8 +11,9 @@ export default class BookInfo extends Component {
     }
 
     componentWillMount() {
-        axios.get('http://localhost:4000/api/describeBook').then(response => this.setState({ data: response.data })).catch();
-         
+        let bookId = localStorage.getItem('bookId')
+        console.log(bookId)
+        axios.get('http://localhost:4000/api/describeBook', {params: bookId}).then(response => this.setState({ data: response.data })).catch();
     }
     
     render() {

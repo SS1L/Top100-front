@@ -29,9 +29,12 @@ export default class Search extends Component {
     handleChange(event) {
         this.setState({ value: event.target.value });
     }
-    showId(info) {
-        console.log(info);
+
+    showId(bookId) {
+        console.log(bookId);
+        localStorage.setItem('bookId', bookId)
     }
+
     render() {
         console.log(this.state.data)
         let book = this.state.data.map((item) => {

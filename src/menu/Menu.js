@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { render } from "@testing-library/react";
 import { Link } from 'react-router-dom';
+import './style.css';
 
 export default class Menu extends Component {
     constructor(props) {
@@ -12,13 +13,17 @@ export default class Menu extends Component {
 
     render() {
         return (
-            <div>
-                <Link to='/books'>
-                    <a>SEARCH BOOKS</a>
-                </Link>
-                <Link>
-                    <a>My LIBRARY</a>
-                </Link>
+            <div className='menu'>
+                <div>
+                    <Link className='list-item' to='/books'>
+                        SEARCH BOOKS
+                    </Link>
+                </div>
+                <div>
+                    <Link className='list-item'>
+                        My LIBRARY
+                    </Link>
+                </div>
             </div>
         )
     }
