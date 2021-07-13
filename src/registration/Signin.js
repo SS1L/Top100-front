@@ -11,45 +11,44 @@ export default class Signin extends Component {
 
         this.state = {
             email: '',
-            pass: ''
+            pass: '',
+            submitted: false
         }
+
+        this.handleUserInput = this.handleUserInput.bind(this);
     }
 
     handleUserInput = (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        this.setState({[name]: value});
+        this.setState({ [name]: value });
     }
 
-    handleSubmit = () => {
-        console.log(this.setState)
-    }
 
     render() {
+        const { email, pass, submitted } = this.state;
         return (
             <div className='section'>
                 <h1 className='title'>Sign In</h1>
                 <div className='form-section'>
                     <form className='form' onSubmit={this.handleSubmit}>
-                        <div className='form-item'>
-                            <label>
-                                <div className='form-label'>
-                                    Email Adress
-                            </div>
+                        <div className={'form-item' + (submitted && !email ? '-has-error' : '')}>
+                            <label htmlFor='email' className='form-label'>
+                                Email Adress
                             </label>
-                            <div>
-                                <input className='form-input' name='email' value={this.state.email} onChange={this.handleUserInput} type='email' />
-                            </div>
+                            <input className='form-input' name='email' value={email} onChange={this.handleUserInput} type='email' />
+                            {submitted && !email &&
+                                <div className='help-block'>Email is required</div>
+                            }
                         </div>
-                        <div className='form-item'>
-                            <label>
-                                <div className='form-label'>
-                                    Password
-                            </div>
+                        <div className={'form-item' + (submitted && !pass ? '-has-error' : '')}>
+                            <label htmlFor='pass' className='form-label'>
+                                Password
                             </label>
-                            <div>
-                                <input className='form-input' name='pass' value={this.state.pass} onChange={this.handleUserInput} type='password' />
-                            </div>
+                            <input className='form-input' name='pass' value={pass} onChange={this.handleUserInput} type='password' />
+                            {submitted && !pass &&
+                                <div className='help-block'>Pass is required</div>
+                            }
                         </div>
                         <button className='btn btn-submit'>SIGN IN</button>
 

@@ -12,10 +12,12 @@ export default class Signup extends Component {
             nickname: '',
             pass: '',
             repPass: '',
+            submitted: false,
             // emailError: '',
             // passError: '',
             // repPassError: ''
         }
+
         this.error = {
             emailError: 'Error'
         }
@@ -27,93 +29,50 @@ export default class Signup extends Component {
         this.setState({ [name]: value });
     };
 
-    handleValidation = () => {
-
-    }
-
-    // validate = () => {
-    //     let emailError = '';
-    //     let repPassError = '';
-    //     if (!this.state.email.includes('@')) {
-    //         emailError = 'Invalid email';
-    //         this.setState({ emailError });
-    //         return false;
-    //     }
-
-    //     if (this.state.pass !== this.state.repPass) {
-    //         repPassError = "Passwords don't match";
-    //         this.setState({ repPassError });
-    //         return false;
-    //     }
-
-    //     return true;
-    // }
-
-    handleSubmit = (event) => {
-        // event.preventDefault()
-        // const isValid = this.validate();
-
-        // if (isValid) {
-        //     console.log(this.state)
-        //     console.log('all work')
-        // }
-        const data = this.state;
-        axios.post('http://localhost:4000/reg', data);
-        console.log(data)
-
-    };
-
 
     render() {
         // console.log(this.state)
+        const { email, nickname, pass, repPass, submitted } = this.state;
         return (
             <div className='section'>
                 <h1 className='title'>Create Account</h1>
                 <div className='form-section'>
                     <form className='form' onSubmit={this.handleSubmit}>
                         <div className='form-item'>
-                            <label>
-                                <div className='form-label'>
-                                    Email Adress
-                            </div>
+                            <label className='form-label'>
+                                Email Adress
                             </label>
-                            <div>
-                                <input className='form-input' name='email' value={this.state.email} onChange={this.handleUserInput} />
-                            </div>
-
-                            {this.error.emailError}
-                        
+                            <input className='form-input' name='email' value={this.state.email} onChange={this.handleUserInput} />
+                            {submitted && !email &&
+                                <div className='help-block'>Email is required</div>
+                            }
                         </div>
                         <div className='form-item'>
-                            <label>
-                                <div className='form-label'>
-                                    Nickname
-                            </div>
+                            <label className='form-label'>
+                                Nickname
                             </label>
-                            <div>
-                                <input className='form-input' name='nickname' value={this.state.nickname} onChange={this.handleUserInput} type='text' />
-                            </div>
+                            <input className='form-input' name='nickname' value={this.state.nickname} onChange={this.handleUserInput} type='text' />
+                            {submitted && !nickname &&
+                                <div className='help-block'>Nickname is required</div>
+                            }
                         </div>
                         <div className='form-item'>
-                            <label>
-                                <div className='form-label'>
-                                    Password
-                            </div>
+                            <label className='form-label'>
+                                Password
                             </label>
-                            <div>
-                                <input className='form-input' name='pass' value={this.state.pass} onChange={this.handleUserInput} type='password' />
-                            </div>
-                            
+                            <input className='form-input' name='pass' value={this.state.pass} onChange={this.handleUserInput} type='password' />
+                            {submitted && !pass &&
+                                <div className='help-block'>Pass is required</div>
+                            }
                         </div>
                         <div className='form-item'>
-                            <label>
-                                <div className='form-label'>
-                                    Repeat Password
-                            </div>
+                            <label className='form-label'>
+                                Repeat Password
                             </label>
-                            <div>
-                                <input className='form-input' name='repPass' value={this.state.repPass} onChange={this.handleUserInput} type='password' />
-                            </div>
+                            <input className='form-input' name='repPass' value={this.state.repPass} onChange={this.handleUserInput} type='password' />
+                            {submitted && !repPass &&
+                                <div className='help-block'>RepPass is required</div>
+                            }
                         </div>
                         <div className='form-item'>
                             <button className='btn btn-submit'>CREATE ACCOUNT</button>

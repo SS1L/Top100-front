@@ -69,3 +69,9 @@
     color: #ffffff;
     transition: background-color 0.35s linear;
 }
+
+.help-block {
+    margin: 10px 0 10px 20px;
+    color: #e70505; 
+    font-weight: bold;
+}
