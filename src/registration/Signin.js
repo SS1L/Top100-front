@@ -5,60 +5,58 @@ import { useState } from 'react';
 import { render } from "@testing-library/react";
 
 
-export default class Signin extends Component {
-    constructor(props) {
-        super(props);
+export default function Signin() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [submitted, setSubmitted] = useState(false);
 
-        this.state = {
-            email: '',
-            pass: '',
-            submitted: false
-        }
-
-        this.handleUserInput = this.handleUserInput.bind(this);
+    function handelSubmit(e) {
+        e.preventDefault();
+        setSubmitted(true)
     }
-
-    handleUserInput = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-        this.setState({ [name]: value });
-    }
-
-
-    render() {
-        const { email, pass, submitted } = this.state;
-        return (
-            <div className='section'>
-                <h1 className='title'>Sign In</h1>
-                <div className='form-section'>
-                    <form className='form' onSubmit={this.handleSubmit}>
-                        <div className={'form-item' + (submitted && !email ? '-has-error' : '')}>
-                            <label htmlFor='email' className='form-label'>
-                                Email Adress
-                            </label>
-                            <input className='form-input' name='email' value={email} onChange={this.handleUserInput} type='email' />
-                            {submitted && !email &&
-                                <div className='help-block'>Email is required</div>
-                            }
-                        </div>
-                        <div className={'form-item' + (submitted && !pass ? '-has-error' : '')}>
-                            <label htmlFor='pass' className='form-label'>
-                                Password
-                            </label>
-                            <input className='form-input' name='pass' value={pass} onChange={this.handleUserInput} type='password' />
-                            {submitted && !pass &&
-                                <div className='help-block'>Pass is required</div>
-                            }
-                        </div>
-                        <button className='btn btn-submit'>SIGN IN</button>
-
-                    </form>
-                    <div>
-                        <a className='section-link' href='/'>Forgot email?</a>
+    return (
+        <div className='section'>
+            <h1 className='title'>Sign In</h1>
+            <div className='form-section'>
+                <form className='form' onSubmit={handelSubmit}>
+                    <div className={'form-item'}>
+                        <label htmlFor='email' className='form-label'>
+                            Email Adress
+                        </label>
+                        <input className='form-input'
+                            name='email'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            type='email'
+                        />
+                        {
+                            submitted && !email &&
+                            <div className='help-block'>Email is required</div>
+                        }
                     </div>
-                    <button className='btn btn-redirect'>CREATE ACCOUNT</button>
+                    <div className={'form-item'}>
+                        <label htmlFor='pass' className='form-label'>
+                            Password
+                        </label>
+                        <input className='form-input'
+                            name='pass'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            type='password'
+                        />
+                        {
+                            submitted && !password &&
+                            <div className='help-block'>Pass is required</div>
+                        }
+                    </div>
+                    <button className='btn btn-submit'>SIGN IN</button>
+
+                </form>
+                <div>
+                    <a className='section-link' href='/'>Forgot email?</a>
                 </div>
+                <button className='btn btn-redirect'>CREATE ACCOUNT</button>
             </div>
-        )
-    }
+        </div>
+    )
 }
