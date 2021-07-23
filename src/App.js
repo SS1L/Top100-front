@@ -1,22 +1,21 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-import Signin from './registration/Signin';
+import Login from './registration/Login';
 import Signup from './registration/Signup';
 import Menu from './menu/Menu';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path='/login' type='guest'>
-            <Signin/>
+          <Route exact path="/login" type="guest">
+            <Login />
           </Route>
-          <Route exact path='/signup'>
-            <Signup/>
+          <Route exact path="/signup">
+            <Signup />
           </Route>
         </Switch>
       </Router>
