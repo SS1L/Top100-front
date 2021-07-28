@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import registration from '../server/Registration';
+
 
 export default function Singup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repPass, setRepPass] = useState('');
 
-  const handelSubmit = (e) => {
+  const handelSubmit = async (e) => {
     e.preventDefault();
+    await registration({ email, password, repPass });
   };
 
   return (
@@ -33,7 +36,7 @@ export default function Singup() {
               className="form-input"
               name="password"
               value={password}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               type="password"
             />
           </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import login from '../server/Login';
+import login from '../server/authService';
 import './style.css';
 
 export default function Login() {
